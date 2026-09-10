@@ -1,47 +1,32 @@
 // respo.atom.js
-// Minimaler Atom-RESPO-Kern
+// Atom-RESPO verbindet Atom mit NC-Modulen
+
+import { monopoliter } from "./monopoliter.js";
+import { atom_core } from "./atom.core.js";
 
 import kraft from "./NC_kraft.js";
 import space from "./NC_space.js";
 import time from "./NC_time.js";
 import vec from "./vec.js";
 import coord from "./coord.js";
+import dreieck from "./dreieck.js";
 
 export const respo_atom = {
 
-    // Atom-Zustand
-    atom: {
-        pos: coord(0, 0, 0),
-        dir: vec(1, 0, 0),
-        force: vec(0, 0, 0),
-        tick: 0
-    },
-
-    // 1. Atom-Puls (Zeit + Bewegung)
     pulse() {
-        this.atom.tick = time.tick();
-
-        // Bewegung durch Raum
-        this.atom.pos = space.move(this.atom.pos, this.atom.dir);
-
-        return this.atom;
+        monopoliter.tick = time.tick();
+        monopoliter.pos = space.move(monopoliter.pos, monopoliter.dir);
+        return monopoliter;
     },
 
-    // 2. Atom-Reaktion (Kraft anwenden)
     react() {
-        this.atom.force = kraft.apply(this.atom.dir);
-
-        return this.atom.force;
+        monopoliter.force = kraft.apply(monopoliter.dir, monopoliter.value);
+        return monopoliter.force;
     },
 
-    // 3. Atom-Balance (Kraft + Raum + Zeit ausgleichen)
     balance() {
-        const f = this.atom.force.length();
-        const t = this.atom.tick;
-
-        // einfache Balance-Formel
-        const bal = f / (t + 1);
-
-        return bal;
+        const f = kraft.length(monopoliter.force);
+        const t = monopoliter.tick || 1;
+        return f / t;
     }
 };
