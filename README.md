@@ -102,3 +102,31 @@ Diese vier Werte sind UNI‑neutral messbar.
 
 ## 5. Pipeline
 
+monopoliter
+↓
+atom.core
+↓
+respo.atom
+↓
+MANIPULATOR (Layer 7.3)
+
+
+MANIPULATOR ist die neutrale Oberinstanz über Atom‑Verhalten.
+
+---
+
+## 6. Status
+
+MANIPULATOR ist:
+
+- kompatibel zu PAIRING‑ROLE (7.2)
+- kompatibel zu PAIRING‑SYNC (7)
+- kompatibel zu PAIRING‑MAP (8)
+- kompatibel zu ATOM / HYPNOSE / MANA / DIAMANT
+- UNI‑neutral
+- Abweichungs‑fähig
+- Wirbel‑fähig
+- Langweil‑fähig
+- Pipeline‑fähig
+
+© iki1uc — Layer 7.3 MANIPULATOR
